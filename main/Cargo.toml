@@ -5,10 +5,10 @@ version = "0.1.0"
 edition = { workspace = true }
 
 [dependencies]
-log = { workspace = true }
 lib = { path = "../lib" }
 libloading = "0.8.8"
-env_logger = { workspace = true }
+log = "0.4.25"
+env_logger = "0.9.3"
 jemallocator = { package = "tikv-jemallocator", version = "0.6.0", features = [
     "unprefixed_malloc_on_supported_platforms",
 ] }

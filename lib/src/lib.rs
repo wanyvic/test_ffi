@@ -1,5 +1,6 @@
 use {log::info, std::fmt::Debug};
 
+#[repr(C)]
 #[derive(Debug)]
 pub struct FFIPayload {
   pub data: Vec<u8>,
@@ -35,8 +36,7 @@ impl Plugin for TestPlugin {
 #[unsafe(no_mangle)]
 #[allow(improper_ctypes_definitions)]
 pub unsafe extern "C" fn _create_plugin() -> *mut dyn Plugin {
-  // 初始化日志记录器，如果已经初始化过会被忽略
-  let _ = env_logger::try_init();
+  solana_logger::setup_with_default("info");
 
   info!("Creating TestPlugin instance");
   let plugin = TestPlugin::default();
